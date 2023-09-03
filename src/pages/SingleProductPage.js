@@ -93,7 +93,7 @@ const SingleProductPage = () => {
             </p>
             <h5 className="price">LKR {salary}</h5>'
             <hr />
-            <p>
+            <p className="abcd">
               Please login and fill the form. If you not login then it's
               automatically goes home page
             </p>
@@ -110,6 +110,16 @@ const SingleProductPage = () => {
 const Wrapper = styled.main`
 .abc{
   background-color: #1B6DA0   ; 
+}
+
+h2{
+  color:#001070;
+}
+.abcd{
+  color: red;
+}
+p{
+  font-size: 1rem;
 }
   .product-center {
     display: grid;

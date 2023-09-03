@@ -40,6 +40,7 @@ const Wrapper = styled.section`
     margin-bottom: 1rem;
   }
   h4 {
+    color: #00138b;
     margin-bottom: 0.5rem;
   }
   .price {

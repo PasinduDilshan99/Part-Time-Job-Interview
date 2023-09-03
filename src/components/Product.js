@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { formatPrice } from "../utils/helpers";
-import { FaSearch } from "react-icons/fa";
+import { VscLocation } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 
 const Product = ({ title, id, location, company, description }) => {
@@ -13,10 +13,15 @@ const Product = ({ title, id, location, company, description }) => {
           <div className="tour-info">
             <h4>{title}</h4>
           </div>
-          <h5>{location}</h5>
+          <hr />
+
           <h5>{company}</h5>
+          <h6>
+            <VscLocation /> {location}
+          </h6>
+          <hr />
           <p>
-            {readMore ? description : `${description.substring(0, 20)}......`}
+            {readMore ? description : `${description.substring(0, 100)}......`}
             <button onClick={() => setReadMore(!readMore)}>
               {readMore ? "show less" : "read more"}
             </button>
@@ -102,6 +107,7 @@ Global Styles
   h2,
   h3,
   h4 {
+    color: #01106d;
     letter-spacing: var(--spacing);
     text-transform: capitalize;
     line-height: 1.25;
@@ -114,13 +120,14 @@ Global Styles
     font-size: 2rem;
   }
   h3 {
-    font-size: 1.25rem;
+    font-size: 2rem;
   }
   h4 {
-    font-size: 0.875rem;
+    font-size: 2rem;
   }
   p {
-    margin-bottom: 1.25rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
     color: #001e58;
   }
   @media screen and (min-width: 800px) {
@@ -134,7 +141,16 @@ Global Styles
       font-size: 1.75rem;
     }
     h4 {
+      font-size: 1.5rem;
+    }
+    h5 {
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+    h6 {
+      margin-top: 0.5rem;
       font-size: 1rem;
+      color: #071c9c;
     }
     body {
       font-size: 1rem;
@@ -240,9 +256,8 @@ Tours
   .single-tour button {
     background: transparent;
     border-color: transparent;
-    text-transform: capitalize;
     color: #0055ff;
-    font-size: 1rem;
+    font-size: 0.8rem;
     cursor: pointer;
     padding-left: 0.25rem;
   }

@@ -14,6 +14,7 @@ const Filters = () => {
       location,
       closeDate,
       hours,
+      max_hours,
       min_salary,
       max_salary,
       salary,
@@ -149,7 +150,7 @@ const Filters = () => {
           {/* salary */}
           <div className="form-control">
             <h5>Salary</h5>
-            <p className="price">{formatPrice(salary)}</p>
+            <p className="price">{salary}</p>
             <input
               type="range"
               name="salary"
@@ -169,7 +170,7 @@ const Filters = () => {
               name="hours"
               onChange={updateFilters}
               min={0}
-              max={24}
+              max={max_hours}
               value={hours}
             ></input>
           </div>

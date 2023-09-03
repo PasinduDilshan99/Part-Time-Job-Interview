@@ -26,6 +26,7 @@ const filter_reducer = (state, action) => {
         ...state.filters,
         max_salary: maxSalary,
         salary: maxSalary,
+        max_hours: maxHours,
         hours: maxHours,
       },
     };

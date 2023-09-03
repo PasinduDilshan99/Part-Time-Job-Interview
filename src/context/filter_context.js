@@ -25,6 +25,7 @@ const initialState = {
     location: "all",
     closeDate: "all",
     hours: 0,
+    max_hours: 0,
     min_salary: 0,
     max_salary: 0,
     salary: 0,
