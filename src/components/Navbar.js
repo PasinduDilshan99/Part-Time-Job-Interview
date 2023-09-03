@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import pic from "../assets/pic.jpg";
+import pic from "../assets/pic.png";
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { links } from "../utils/constants";
@@ -16,7 +16,7 @@ const Nav = () => {
       <div className="nav-center">
         <div className="nav-header">
           <Link to="/">
-            <img src={pic} alt="comfy sloth" />
+            <img src={pic} alt="jobs finder" />
           </Link>
           <button type="button" className="nav-toggle" onClick={openSidebar}>
             <FaBars />
@@ -31,11 +31,6 @@ const Nav = () => {
               </li>
             );
           })}
-          {myUser && (
-            <li>
-              <Link to="/checkout">checkout</Link>
-            </li>
-          )}
         </ul>
         <CartButtons />
       </div>
@@ -44,7 +39,7 @@ const Nav = () => {
 };
 
 const NavContainer = styled.nav`
-  background: #eadbcc;
+  background: #b3d5f9;
   height: 5rem;
   display: flex;
   align-items: center;

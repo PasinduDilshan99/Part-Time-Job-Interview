@@ -19,14 +19,15 @@ const initialState = {
   sort: "price-lowest",
   filters: {
     text: "",
-    gen: "all",
+    title: "all",
     company: "all",
-    category: "all",
-    color: "all",
-    min_price: 0,
-    max_price: 0,
-    price: 0,
-    shipping: false,
+    // category: "all",
+    location: "all",
+    closeDate: "all",
+    hours: 0,
+    min_salary: 0,
+    max_salary: 0,
+    salary: 0,
   },
 };
 
@@ -67,20 +68,23 @@ export const FilterProvider = ({ children }) => {
     let value = e.target.value;
     // console.log(name);
     // console.log(value);
-    if (name === "gen") {
+    if (name === "title") {
       value = e.target.textContent;
     }
-    if (name === "category") {
+    // if (name === "category") {
+    //   value = e.target.textContent;
+    // }
+    if (name === "location") {
       value = e.target.textContent;
     }
-    if (name === "color") {
-      value = e.target.dataset.color;
-    }
-    if (name === "price") {
+    if (name === "salary") {
       value = Number(value);
     }
-    if (name === "shipping") {
-      value = e.target.checked;
+    if (name === "hours") {
+      value = Number(value);
+    }
+    if (name === "closeDate") {
+      value = e.target.textContent;
     }
 
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });

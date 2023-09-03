@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 
-import { formatPrice } from "../utils/helpers";
-
 import { Loading, Error, AddToCart, Stars, PageHero } from "../components";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import CheckoutPage from "./CheckoutPage";
 
 const SingleProductPage = () => {
   const { id } = useParams();
@@ -41,12 +40,15 @@ const SingleProductPage = () => {
   if (error) {
     return <Error />;
   }
+
   const {
-    name,
-    price,
+    title,
+    salary,
+    category,
+    location,
+    hours,
+    closeDate,
     description,
-    stock,
-    image,
     stars,
     reviews,
     id: sku,
@@ -54,35 +56,50 @@ const SingleProductPage = () => {
   } = product;
   return (
     <Wrapper>
-      <PageHero title={name} product />
-      <div className="section section-center page">
-        <Link to="/products" className="btn">
-          back to products
+      <PageHero title={title} product />
+      <br />
+
+      <div className="section-center">
+        <Link to="/products" className="btn abc">
+          back to Jobs menu
         </Link>
+      </div>
+      <div className="section section-center page">
         <div className="product-center">
-          <div className="container">
-            <img src={image} />
-          </div>
           <section className="content">
-            <h2>{name}</h2>
+            <h2>{title}</h2>
+            <h4>{category}</h4>
             <Stars stars={stars} reviews={reviews} />
-            <h5 className="price">{formatPrice(price)}</h5>'
             <p className="description">{description}</p>
-            <p className={`${stock > 1 ? "info" : "color1"}`}>
-              <span>Available :</span>
-              {stock > 0 ? "In stock" : "out of stock"}
-              {"   "}({stock})
-            </p>
             <p className="info">
               <span>SKU :</span>
-              {id}
+              {sku}
             </p>
             <p className="info">
-              <span>Brand :</span>
+              <span>company :</span>
               {company}
             </p>
+            <p className="info">
+              <span>location :</span>
+              {location}
+            </p>
+            <p className="info">
+              <span> Hours :</span>
+              {hours}
+            </p>
+            <p className="info">
+              <span> closing :</span>
+              {closeDate}
+            </p>
+            <h5 className="price">LKR {salary}</h5>'
             <hr />
-            {stock > 0 && <AddToCart product={product} />}
+            <p>
+              Please login and fill the form. If you not login then it's
+              automatically goes home page
+            </p>
+            <Link to="/checkout" product={product} className="btn abc">
+              fill the form
+            </Link>
           </section>
         </div>
       </div>
@@ -91,13 +108,16 @@ const SingleProductPage = () => {
 };
 
 const Wrapper = styled.main`
+.abc{
+  background-color: #1B6DA0   ; 
+}
   .product-center {
     display: grid;
     gap: 4rem;
     margin-top: 2rem;
   }
   .price {
-    color: var(--clr-primary-5);
+    color: #3B33FF  ;
   }
   .desc {
     line-height: 2;

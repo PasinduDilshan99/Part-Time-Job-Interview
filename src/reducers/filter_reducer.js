@@ -9,15 +9,25 @@ import {
   CLEAR_FILTERS,
 } from "../actions";
 
+let hour = 0;
 const filter_reducer = (state, action) => {
   if (action.type === LOAD_PRODUCTS) {
-    let maxPrice = action.payload.map((p) => p.price);
-    maxPrice = Math.max(...maxPrice);
+    let maxSalary = action.payload.map((p) => p.salary);
+    maxSalary = Math.max(...maxSalary);
+    let maxHours = action.payload.map((p) => p.hours);
+    maxHours = Math.max(...maxHours);
+    hour = maxHours;
+
     return {
       ...state,
       all_products: [...action.payload],
       filtered_products: [...action.payload],
-      filters: { ...state.filters, max_price: maxPrice, price: maxPrice },
+      filters: {
+        ...state.filters,
+        max_salary: maxSalary,
+        salary: maxSalary,
+        hours: maxHours,
+      },
     };
   }
 
@@ -33,29 +43,21 @@ const filter_reducer = (state, action) => {
   if (action.type === SORT_PRODUCTS) {
     const { sort, filtered_products } = state;
     let tempProducts = [...filtered_products];
+
     if (sort === "price-lowest") {
-      // tempProducts = tempProducts.sort((a, b) => {
-      //   if (a.price < b.price) {
-      //     return -1;
-      //   }
-      //   if (a.price > b.price) {
-      //     return 1;
-      //   }
-      //   return 0;
-      // });
-      tempProducts = tempProducts.sort((a, b) => a.price - b.price);
+      tempProducts = tempProducts.sort((a, b) => a.salary - b.salary);
     }
     if (sort === "price-highest") {
-      tempProducts = tempProducts.sort((a, b) => b.price - a.price);
+      tempProducts = tempProducts.sort((a, b) => b.salary - a.salary);
     }
     if (sort === "name-a") {
       tempProducts = tempProducts.sort((a, b) => {
-        return a.name.localeCompare(b.name);
+        return a.title.localeCompare(b.title);
       });
     }
     if (sort === "name-z") {
       tempProducts = tempProducts.sort((a, b) => {
-        return b.name.localeCompare(a.name);
+        return b.title.localeCompare(a.title);
       });
     }
 
@@ -69,27 +71,35 @@ const filter_reducer = (state, action) => {
 
   if (action.type === FILTER_PRODUCTS) {
     const { all_products } = state;
-    const { text, gen, category, company, color, price, shipping } =
-      state.filters;
+    const {
+      text,
+      title,
+      // category,
+      company,
+      location,
+      salary,
+      hours,
+      closeDate,
+    } = state.filters;
     let tempProducts = [...all_products];
     // text
     if (text) {
       tempProducts = tempProducts.filter((product) => {
-        return product.name.toLowerCase().startsWith(text);
+        return product.title.toLowerCase().startsWith(text);
       });
     }
-    //gens
-    if (gen !== "all") {
+    //title
+    if (title !== "all") {
       tempProducts = tempProducts.filter((product) => {
-        return product.gen === gen;
+        return product.title === title;
       });
     }
     //category
-    if (category !== "all") {
-      tempProducts = tempProducts.filter((product) => {
-        return product.category === category;
-      });
-    }
+    // if (category !== "all") {
+    //   tempProducts = tempProducts.filter((product) => {
+    //     return product.category === category;
+    //   });
+    // }
 
     // company
     if (company !== "all") {
@@ -97,23 +107,25 @@ const filter_reducer = (state, action) => {
         return product.company === company;
       });
     }
-
-    // colors
-    if (color !== "all") {
+    // close dates
+    if (closeDate !== "all") {
       tempProducts = tempProducts.filter((product) => {
-        return product.colors.find((c) => c === color);
+        return product.closeDate === closeDate;
       });
     }
 
-    //price
-    tempProducts = tempProducts.filter((product) => product.price <= price);
-
-    //shipping
-    if (shipping) {
-      tempProducts = tempProducts.filter(
-        (product) => product.shipping === true
-      );
+    // location
+    if (location !== "all") {
+      tempProducts = tempProducts.filter((product) => {
+        return product.location === location;
+      });
     }
+
+    //salary
+    tempProducts = tempProducts.filter((product) => product.salary <= salary);
+
+    // working hours
+    tempProducts = tempProducts.filter((product) => product.hours <= hours);
 
     return { ...state, filtered_products: tempProducts };
   }
@@ -124,11 +136,13 @@ const filter_reducer = (state, action) => {
       filters: {
         ...state.filters,
         text: "",
+        title: "all",
         company: "all",
-        category: "all",
-        color: "all",
-        price: state.filters.max_price,
-        shipping: false,
+        // category: "all",
+        location: "all",
+        closeDate: "all",
+        hours: hour,
+        salary: state.filters.max_salary,
       },
     };
   }

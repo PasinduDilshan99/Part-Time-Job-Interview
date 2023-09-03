@@ -8,30 +8,33 @@ const Filters = () => {
   const {
     filters: {
       text,
-      gen,
-      category,
+      title,
       company,
-      color,
-      min_price,
-      max_price,
-      price,
-      shipping,
+      // category,
+      location,
+      closeDate,
+      hours,
+      min_salary,
+      max_salary,
+      salary,
     },
     updateFilters,
     clearFilters,
     all_products,
   } = useFilterContext();
 
-  const gens = getUniqueValues(all_products, "gen");
+  const titles = getUniqueValues(all_products, "title");
   //const categories = getUniqueValues(filtered_products, "category");
   //const categories = getUniqueValues(all_products, "category");
+  const categories = getUniqueValues(all_products, "category");
   const companies = getUniqueValues(all_products, "company");
-  const colors = getUniqueValues(all_products, "colors");
+  const locations = getUniqueValues(all_products, "location");
+  const closeDates = getUniqueValues(all_products, "closeDate");
 
   // console.log(all_products);
   // console.log(filtered_products);
-  let a1 = [];
-  a1 = all_products.filter((item) => item.gen === gen);
+  // let a1 = [];
+  // a1 = all_products.filter((item) => item.gen === gen);
   // console.log(a1);
 
   // let newCat = [];
@@ -44,7 +47,7 @@ const Filters = () => {
 
   // let newCat1 = newCat.push[true];
   // console.log(newCat1);
-  const categories = getUniqueValues(a1, "category");
+  // const categories = getUniqueValues(a1, "category");
   return (
     <Wrapper>
       <div className="content">
@@ -60,18 +63,18 @@ const Filters = () => {
               onChange={updateFilters}
             ></input>
           </div>
-          {/* search gens */}
+          {/* search Title */}
           <div className="form-control">
-            <h5>Gens</h5>
+            <h5>Title</h5>
             <div>
-              {gens.map((c, index) => {
+              {titles.map((c, index) => {
                 return (
                   <button
                     key={index}
                     onClick={updateFilters}
-                    name="gen"
+                    name="title"
                     type="button"
-                    className={`${gen === c.toLowerCase() ? "active" : null}`}
+                    className={`${title === c.toLowerCase() ? "active" : null}`}
                   >
                     {c}
                   </button>
@@ -79,8 +82,9 @@ const Filters = () => {
               })}
             </div>
           </div>
+
           {/* category */}
-          <div className="form-control">
+          {/* <div className="form-control">
             <h5>category</h5>
             <div>
               {categories.map((c, index) => {
@@ -99,7 +103,8 @@ const Filters = () => {
                 );
               })}
             </div>
-          </div>
+          </div> */}
+
           {/* company */}
           <div className="form-control">
             <h5>company</h5>
@@ -118,66 +123,77 @@ const Filters = () => {
               })}
             </select>
           </div>
-          {/* colors */}
+
+          {/* location */}
           <div className="form-control">
-            <h5>colors</h5>
-            <div className="colors">
-              {colors.map((c, index) => {
-                if (c === "all") {
-                  return (
-                    <button
-                      key={index}
-                      name="color"
-                      onClick={updateFilters}
-                      data-color="all"
-                      className={`${
-                        color === "all" ? "all-btn active" : "all-btn"
-                      }`}
-                    >
-                      all
-                    </button>
-                  );
-                }
+            <h5>Location</h5>
+            <div>
+              {locations.map((c, index) => {
                 return (
                   <button
                     key={index}
-                    name="color"
-                    style={{ background: c }}
-                    className={`${
-                      color === c ? "color-btn active" : "color-btn"
-                    }`}
-                    data-color={c}
                     onClick={updateFilters}
+                    name="location"
+                    type="button"
+                    className={`${
+                      location === c.toLowerCase() ? "active" : null
+                    }`}
                   >
-                    {color === c ? <FaCheck /> : null}
+                    {c}
                   </button>
                 );
               })}
             </div>
           </div>
-          {/* price */}
+
+          {/* salary */}
           <div className="form-control">
-            <h5>price</h5>
-            <p className="price">{formatPrice(price)}</p>
+            <h5>Salary</h5>
+            <p className="price">{formatPrice(salary)}</p>
             <input
               type="range"
-              name="price"
+              name="salary"
               onChange={updateFilters}
-              min={min_price}
-              max={max_price}
-              value={price}
+              min={min_salary}
+              max={max_salary}
+              value={salary}
             ></input>
           </div>
-          {/* shipping */}
-          <div className="form-control shipping">
-            <label htmlFor="shipping">free shipping</label>
+
+          {/* Hours */}
+          <div className="form-control">
+            <h5>Working Hours</h5>
+            <p className="price">{hours}</p>
             <input
-              type="checkbox"
-              name="shipping"
-              id="shipping"
+              type="range"
+              name="hours"
               onChange={updateFilters}
-              checked={shipping}
+              min={0}
+              max={24}
+              value={hours}
             ></input>
+          </div>
+
+          {/* close dates */}
+          <div className="form-control">
+            <h5>Close Dates</h5>
+            <div>
+              {closeDates.map((c, index) => {
+                return (
+                  <button
+                    key={index}
+                    onClick={updateFilters}
+                    name="closeDate"
+                    type="button"
+                    className={`${
+                      closeDate === c.toLowerCase() ? "active" : null
+                    }`}
+                  >
+                    {c}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </form>
         {/* button */}

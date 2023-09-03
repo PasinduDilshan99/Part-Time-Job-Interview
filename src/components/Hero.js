@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import heroBcg from "../assets/hero-bcg.jpeg";
-import heroBcg2 from "../assets/hero-bcg-2.jpeg";
+import heroBcg from "../assets/hero-bcg.jpg";
+import heroBcg2 from "../assets/hero-bcg-2.jpg";
+import heroBcg3 from "../assets/hero-bcg-3.jpg";
+import heroBcg4 from "../assets/hero-bcg-4.jpeg";
 
 const Hero = () => {
   return (
@@ -10,22 +12,26 @@ const Hero = () => {
       <article className="content">
         <h1>
           Welcome to the <br />
-          New Clothes Shop
+          Part time Job founders
+          <br />
+          <br />
+          <p>
+            Many businesses are cutting back by employing lower-paid part-time
+            workers. Part-time work is generally hard to find. I'm part-time. I
+            work three days a week.
+          </p>
         </h1>
-        <p>
-          A clothes shop or clothes store is any shop which sells items of
-          ready-made clothing. A small shop which sells expensive or designer
-          clothing may be called a boutique. A shop that sells clothes for a
-          narrowly restricted market such as school uniforms or outdoor sports
-          may be called an outfitter.
-        </p>
+
         <Link to="/products" className="btn hero-btn">
-          Shop now
+          jobs
         </Link>
       </article>
       <article className="img-container">
         <img src={heroBcg} alt="nice table" className="main-img" />
         <img src={heroBcg2} alt="person working" className="accent-img" />
+        <img src={heroBcg2} alt="person working" className="accent-img" />
+        <img src={heroBcg3} alt="person working" className="accent-img2" />
+        <img src={heroBcg4} alt="person working" className="accent-img3" />
       </article>
     </Wrapper>
   );
@@ -51,12 +57,15 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr 1fr;
     gap: 8rem;
     h1 {
+      color:#141670  ; 
       margin-bottom: 2rem;
     }
     p {
+       color:#393A91 ;
       font-size: 1.25rem;
     }
     .hero-btn {
+      background: #4D50E3 ;
       padding: 0.75rem 1.5rem;
       font-size: 1rem;
     }
@@ -80,6 +89,25 @@ const Wrapper = styled.section`
       transform: translateX(-50%);
       border-radius: var(--radius);
     }
+    .accent-img2 {
+      position: absolute;
+      bottom: 0;
+      left: 250px;
+      width: 250px;
+      height:145px;
+      transform: translateX(-50%);
+      border-radius: var(--radius);
+    }
+    .accent-img3 {
+      position: absolute;
+      bottom: 0;
+      left: 500px;
+      width: 250px;
+       height:145px;
+      transform: translateX(-50%);
+      border-radius: var(--radius);
+
+  
     .img-container::before {
       content: "";
       position: absolute;

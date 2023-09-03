@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/logo.jpg";
+import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import { FaTimes } from "react-icons/fa";
@@ -34,14 +34,6 @@ const Sidebar = () => {
               </li>
             );
           })}
-
-          {myUser && (
-            <li>
-              <Link to="/checkout" onClick={closeSidebar}>
-                checkout
-              </Link>
-            </li>
-          )}
         </ul>
         <CartButtons />
       </aside>

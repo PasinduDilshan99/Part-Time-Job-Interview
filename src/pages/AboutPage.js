@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { PageHero } from "../components";
-import aboutImg from "../assets/hero-bcg.jpeg";
+import aboutImg from "../assets/hero-bcg.jpg";
 
 const AboutPage = () => {
   return (
@@ -11,11 +11,19 @@ const AboutPage = () => {
         <img src={aboutImg} alt="nice desk" />
         <article>
           <div className="title">
-            <h2>Oue Story</h2>
+            <h2>Our Story</h2>
           </div>
           <p>
-            sdfaf as asfhjasfas asdfjasuif asuihasbf asuf sabbasf asf ab fasuf
-            asuif auuia ui
+            Part-time jobs are great ways to gain professional experience and
+            earn a steady income while also working fewer hours. While these
+            jobs may not require the same amount of experience as some full-time
+            positions, employers still require candidates to submit polished and
+            cohesive resumes with their applications. If you're seeking a
+            part-time job, you may benefit from learning how to draft a resume
+            that impresses any hiring manager. In this article, we discuss the
+            type of content you may include in this document, how to write a
+            part-time job resume and a template and example you may use as a
+            reference.
           </p>
         </article>
       </Wrapper>
