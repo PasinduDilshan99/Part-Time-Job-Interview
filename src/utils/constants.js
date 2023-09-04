@@ -1277,20 +1277,7 @@ export const data = [
     stars: 4.1,
     featured: false,
   },
-  {
-    id: 90,
-    title: "Assistant Photographer",
-    description:
-      "Join our photography team as a part-time assistant. Assist in setting up equipment and capturing memorable moments.Salary will be paid per hour.",
-    salary: 400,
-    location: "Colombo",
-    hours: 5,
-    closeDate: "2023-09-30",
-    company: "Snapshot Studios",
-    reviews: 8,
-    stars: 4.2,
-    featured: true,
-  },
+
   {
     id: 91,
     title: "Assistant Photographer",

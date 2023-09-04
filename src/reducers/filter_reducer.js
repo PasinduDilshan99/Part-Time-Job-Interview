@@ -72,16 +72,8 @@ const filter_reducer = (state, action) => {
 
   if (action.type === FILTER_PRODUCTS) {
     const { all_products } = state;
-    const {
-      text,
-      title,
-      // category,
-      company,
-      location,
-      salary,
-      hours,
-      closeDate,
-    } = state.filters;
+    const { text, title, company, location, salary, hours, closeDate } =
+      state.filters;
     let tempProducts = [...all_products];
     // text
     if (text) {
@@ -139,7 +131,6 @@ const filter_reducer = (state, action) => {
         text: "",
         title: "all",
         company: "all",
-        // category: "all",
         location: "all",
         closeDate: "all",
         hours: hour,
