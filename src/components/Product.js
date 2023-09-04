@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const Product = ({ title, id, location, company, description }) => {
   const [readMore, setReadMore] = useState(false);
+
   return (
     <Wrapper>
       <article className="single-tour">
